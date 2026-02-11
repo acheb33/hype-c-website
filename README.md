@@ -4,7 +4,7 @@ Single-file HTML/CSS/JS prototype for the Hype-C e-commerce storefront. This is 
 
 ## What's in here
 
-`hype-c-shopify-prototype.html` — fully self-contained prototype with:
+`index.html` — fully self-contained prototype with:
 - Home, Shop, About, and Ingredient Disclosure pages
 - SPA-style navigation (JS page switching, no routing)
 - Mobile-responsive breakpoints (375px, 480px, 768px, 1024px)
@@ -21,15 +21,35 @@ Single-file HTML/CSS/JS prototype for the Hype-C e-commerce storefront. This is 
 
 ## How to preview
 
-Open the HTML file directly in Chrome, Safari, or Firefox. For mobile testing, serve locally:
+Open `index.html` directly in Chrome, Safari, or Firefox. For mobile testing, serve locally:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then visit `http://localhost:8000/hype-c-shopify-prototype.html` on your phone (use your computer's local IP).
+Then visit `http://localhost:8000` on your phone (use your computer's local IP).
 
 > **Note:** Opening from iOS Files won't work — the sandboxed WebKit view blocks JavaScript.
+
+## Deployment
+
+This site is deployed via **GitHub Pages** from the `main` branch root.
+
+**Live URL:** https://hype-c.com (or `https://<your-username>.github.io/hype-c-website/` before custom domain setup)
+
+### Custom domain setup
+
+1. In your GitHub repo, go to **Settings > Pages**
+2. Set **Source** to "Deploy from a branch" → `main` / `/ (root)`
+3. Under **Custom domain**, enter `hype-c.com`
+4. In your domain registrar's DNS settings, add:
+   - `A` records pointing to GitHub Pages IPs:
+     - `185.199.108.153`
+     - `185.199.109.153`
+     - `185.199.110.153`
+     - `185.199.111.153`
+   - `CNAME` record: `www` → `<your-username>.github.io`
+5. Check **Enforce HTTPS** once DNS propagates
 
 ## Shopify migration
 

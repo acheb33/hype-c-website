@@ -158,9 +158,9 @@ img { max-width: 100%; display: block; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
 /* Page visibility & transitions */
-.page { display: none; opacity: 0; transition: opacity 0.3s ease; }
-.page.active { display: block; opacity: 1; }
-.page.fade-in { opacity: 1; }
+.page { display: none; opacity: 0; }
+.page.active { display: block; opacity: 0; transition: opacity 0.3s ease; }
+.page.active.fade-in { opacity: 1; }
 
 /* ============================================================
    NAVIGATION
@@ -230,6 +230,7 @@ img { max-width: 100%; display: block; }
 
 /* Mobile nav */
 .nav-mobile-cta { display: none; }
+.nav-mobile-cta-btn { width: 100%; margin-top: 8px; }
 .nav-toggle { display: none; background: none; border: none; color: var(--white); font-size: 24px; cursor: pointer; }
 
 @media (max-width: 768px) {
@@ -631,9 +632,6 @@ img { max-width: 100%; display: block; }
   .why-grid { grid-template-columns: 1fr; }
   .ingredient-highlight { padding: 28px 20px; }
   .ingredients-list { gap: 20px; }
-}
-
-@media (max-width: 768px) {
   .footer-grid { grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
   .footer-brand { grid-column: 1 / -1; margin-bottom: 8px; }
   .footer-brand p { max-width: 100%; }
@@ -1188,9 +1186,9 @@ img { max-width: 100%; display: block; }
   .bottle-svg { max-width: 280px; }
   .product-details h1 { font-size: 28px; }
   .variant-option { padding: 16px; flex-wrap: wrap; gap: 8px; }
-  .variant-name { font-size: 15px; }
-  .variant-detail { font-size: 13px; }
-  .variant-price { font-size: 20px; }
+  .variant-option .variant-info h4 { font-size: 15px; }
+  .variant-option .variant-info .variant-detail { font-size: 13px; }
+  .variant-option .variant-price .amount { font-size: 20px; }
   .founder-card--physician { padding: 28px 20px; }
   .founder-layout { flex-direction: column; gap: 16px; }
   .founder-avatar--large { width: 64px; height: 64px; min-width: 64px; font-size: 22px; }
@@ -1425,10 +1423,10 @@ img { max-width: 100%; display: block; }
     <div class="nav-logo" onclick="showPage('home')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showPage('home')}" role="button" tabindex="0" aria-label="HYPE-C Home">HYPE<span>-C</span></div>
     <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu" aria-expanded="false" id="navToggle">&#9776;</button>
     <ul class="nav-links" id="navLinks" role="tablist">
-      <li role="presentation"><a href="#" onclick="showPage('home');return false" class="active" data-page="home" role="tab" aria-selected="true">Home</a></li>
-      <li role="presentation"><a href="#" onclick="showPage('product');return false" data-page="product" role="tab" aria-selected="false">Shop</a></li>
-      <li role="presentation"><a href="#" onclick="showPage('about');return false" data-page="about" role="tab" aria-selected="false">About</a></li>
-      <li class="nav-mobile-cta" role="presentation"><button class="btn-primary" onclick="showPage('product')" style="width:100%;margin-top:8px">SHOP NOW</button></li>
+      <li role="presentation"><a href="#" onclick="showPage('home');return false" id="tab-home" class="active" data-page="home" role="tab" aria-selected="true" aria-controls="page-home">Home</a></li>
+      <li role="presentation"><a href="#" onclick="showPage('product');return false" id="tab-product" data-page="product" role="tab" aria-selected="false" aria-controls="page-product">Shop</a></li>
+      <li role="presentation"><a href="#" onclick="showPage('about');return false" id="tab-about" data-page="about" role="tab" aria-selected="false" aria-controls="page-about">About</a></li>
+      <li class="nav-mobile-cta" role="presentation"><button class="btn-primary nav-mobile-cta-btn" onclick="showPage('product')">SHOP NOW</button></li>
     </ul>
     <button class="nav-cta" onclick="showPage('product')">SHOP NOW</button>
   </div>
@@ -1439,11 +1437,11 @@ img { max-width: 100%; display: block; }
      ============================================================ -->
 <noscript><style>.page{display:block!important}.reveal{opacity:1!important;transform:none!important}.hero-headline,.hero-tagline,.hero-body,.hero-ctas{opacity:1!important;transform:none!important}</style></noscript>
 
-<main>
-<div id="page-home" class="page active" role="tabpanel" aria-label="Home">
+<main id="main-content">
+<div id="page-home" class="page active fade-in" role="tabpanel" aria-labelledby="tab-home">
 
   <!-- Hero -->
-  <section class="hero" id="main-content">
+  <section class="hero">
     <div class="hero-waves">
       <svg viewBox="0 0 1440 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
@@ -1673,7 +1671,7 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      PAGE: PRODUCT
      ============================================================ -->
-<div id="page-product" class="page" role="tabpanel" aria-label="Shop">
+<div id="page-product" class="page" role="tabpanel" aria-labelledby="tab-product">
   <section class="product-hero">
     <div class="container">
       <div class="product-layout">
@@ -1842,7 +1840,7 @@ img { max-width: 100%; display: block; }
             </div>
           </div>
 
-          <button class="btn-primary add-to-cart">ADD TO CART</button>
+          <button class="btn-primary add-to-cart" onclick="addToCart()">ADD TO CART</button>
 
           <div class="product-badges">
             <div class="badge">Non-Toxic</div>
@@ -1879,7 +1877,7 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      PAGE: ABOUT
      ============================================================ -->
-<div id="page-about" class="page" role="tabpanel" aria-label="About">
+<div id="page-about" class="page" role="tabpanel" aria-labelledby="tab-about">
 
   <section class="about-hero">
     <div class="container">
@@ -2004,7 +2002,7 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      PAGE: CA INGREDIENT DISCLOSURE
      ============================================================ -->
-<div id="page-ca-disclosure" class="page" role="tabpanel" aria-label="Ingredient Disclosure">
+<div id="page-ca-disclosure" class="page" role="tabpanel" aria-label="Ingredient Disclosure" aria-labelledby="tab-about">
   <div class="container">
     <div class="legal-page">
       <h1>Ingredient Disclosure</h1>
@@ -2057,9 +2055,9 @@ img { max-width: 100%; display: block; }
       <p>Hype-C is a surface cleaner. It is not registered with the EPA as a pesticide, disinfectant, or sanitizer, and no claims of antimicrobial efficacy are made.</p>
 
       <h2>Manufacturer</h2>
-      <p>Distributed by Hype Everything LLC<br>www.hype-c.com<br>hello@hype-c.com</p>
+      <p>Distributed by Hype Everything LLC<br><a href="https://hype-c.com">www.hype-c.com</a><br><a href="mailto:hello@hype-c.com">hello@hype-c.com</a></p>
 
-      <p class="legal-footer-note">Last updated: February 2026. For questions about ingredients, please contact hello@hype-c.com.</p>
+      <p class="legal-footer-note">Last updated: February 2026. For questions about ingredients, please contact <a href="mailto:hello@hype-c.com">hello@hype-c.com</a>.</p>
     </div>
   </div>
 </div>
@@ -2111,8 +2109,8 @@ img { max-width: 100%; display: block; }
       <div class="footer-col">
         <h4>Connect</h4>
         <ul>
-          <li><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-          <li><a href="#" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+          <li><span style="color:var(--light-gray);font-family:var(--font-body);font-weight:300;font-size:14px">Instagram &mdash; Coming Soon</span></li>
+          <li><span style="color:var(--light-gray);font-family:var(--font-body);font-weight:300;font-size:14px">TikTok &mdash; Coming Soon</span></li>
           <li><a href="mailto:hello@hype-c.com">hello@hype-c.com</a></li>
         </ul>
       </div>
@@ -2157,17 +2155,18 @@ img { max-width: 100%; display: block; }
       p.classList.remove('active', 'fade-in');
     });
 
-    // Show new page with fade-in
+    // Show new page with fade-in (force reflow between display and opacity)
     targetPage.classList.add('active');
-    requestAnimationFrame(function() {
-      targetPage.classList.add('fade-in');
-    });
+    targetPage.offsetHeight; // force reflow so transition can fire
+    targetPage.classList.add('fade-in');
 
     // Update nav active state + ARIA
     document.querySelectorAll('.nav-links a[role="tab"]').forEach(function(a) {
       a.classList.remove('active');
       a.setAttribute('aria-selected', 'false');
-      if (a.dataset.page === page) {
+      // CA Disclosure falls under About in the nav
+      const navPage = page === 'ca-disclosure' ? 'about' : page;
+      if (a.dataset.page === navPage) {
         a.classList.add('active');
         a.setAttribute('aria-selected', 'true');
       }
@@ -2180,6 +2179,9 @@ img { max-width: 100%; display: block; }
     if (pushState) {
       const url = page === 'home' ? '/' : '/#' + page;
       history.pushState({ page: page }, '', url);
+    } else if (!history.state) {
+      // Set state on initial load for non-home pages
+      history.replaceState({ page: page }, '', '/#' + page);
     }
 
     // Close mobile nav + update ARIA
@@ -2201,6 +2203,13 @@ img { max-width: 100%; display: block; }
       }
       setTimeout(observeElements, 50);
     });
+
+    // Move focus to the page heading for screen readers
+    const heading = targetPage.querySelector('h1, h2, .hero-headline');
+    if (heading) {
+      heading.setAttribute('tabindex', '-1');
+      heading.focus({ preventScroll: true });
+    }
   }
 
   // Handle browser back/forward
@@ -2215,6 +2224,13 @@ img { max-width: 100%; display: block; }
     const navToggle = document.getElementById('navToggle');
     const isOpen = navLinks.classList.toggle('open');
     if (navToggle) navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+
+  // Add to cart (prototype placeholder — Shopify will replace)
+  function addToCart() {
+    const selected = document.querySelector('.variant-option.selected .variant-info h4');
+    const name = selected ? selected.textContent : 'Item';
+    alert(name + ' added! (This is a prototype — checkout will be handled by Shopify.)');
   }
 
   // Variant selector
@@ -2278,6 +2294,7 @@ img { max-width: 100%; display: block; }
   window.showPage = showPage;
   window.toggleNav = toggleNav;
   window.selectVariant = selectVariant;
+  window.addToCart = addToCart;
 })();
 </script>
 
