@@ -118,17 +118,23 @@
   --dark-gray: #1a1a1a;
   --mid-gray: #2a2a2a;
   --light-gray: #999999;
-  --off-white: #f5f5f0;
   --white: #ffffff;
   --teal: #00D2D3;
   --teal-dark: #00b3b4;
   --teal-glow: rgba(0, 210, 211, 0.15);
   --orange: #FF6B35;
   --orange-glow: rgba(255, 107, 53, 0.15);
-  --font-brand: 'Oswald', sans-serif;
-  --font-tagline: 'Bebas Neue', sans-serif;
-  --font-body-cond: 'Barlow Condensed', sans-serif;
-  --font-body: 'Barlow', sans-serif;
+  --purple: #9B30FF;
+  --purple-dark: #5B1A8E;
+  --purple-glow: rgba(155, 48, 255, 0.15);
+  --text-secondary: #cccccc;
+  --text-tertiary: #b0b0b0;
+  --text-muted: #949494;
+  --border-light: #3a3a3a;
+  --font-brand: 'Oswald', system-ui, sans-serif;
+  --font-tagline: 'Bebas Neue', system-ui, sans-serif;
+  --font-body-cond: 'Barlow Condensed', system-ui, sans-serif;
+  --font-body: 'Barlow', system-ui, sans-serif;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -151,9 +157,10 @@ img { max-width: 100%; display: block; }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-/* Page visibility */
-.page { display: none; }
-.page.active { display: block; }
+/* Page visibility & transitions */
+.page { display: none; opacity: 0; transition: opacity 0.3s ease; }
+.page.active { display: block; opacity: 1; }
+.page.fade-in { opacity: 1; }
 
 /* ============================================================
    NAVIGATION
@@ -222,12 +229,14 @@ img { max-width: 100%; display: block; }
 .nav-cta:hover { background: var(--orange); color: var(--white); }
 
 /* Mobile nav */
+.nav-mobile-cta { display: none; }
 .nav-toggle { display: none; background: none; border: none; color: var(--white); font-size: 24px; cursor: pointer; }
 
 @media (max-width: 768px) {
   .nav-toggle { display: block; }
   .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background-color: var(--black); border-bottom: 1px solid var(--mid-gray); padding: 16px 24px; gap: 16px; }
   .nav-links.open { display: flex; }
+  .nav-links.open .nav-mobile-cta { display: block; }
   .nav-cta { display: none; }
 }
 
@@ -305,7 +314,7 @@ img { max-width: 100%; display: block; }
   font-weight: 300;
   font-size: 18px;
   line-height: 1.7;
-  color: #cccccc;
+  color: var(--text-secondary);
   margin-bottom: 36px;
   max-width: 580px;
   margin-left: auto;
@@ -448,7 +457,7 @@ img { max-width: 100%; display: block; }
   font-weight: 300;
   font-size: 18px;
   line-height: 1.7;
-  color: #cccccc;
+  color: var(--text-secondary);
   max-width: 600px;
 }
 
@@ -490,16 +499,16 @@ img { max-width: 100%; display: block; }
 }
 
 .how-card:nth-child(2) { border-top-color: rgba(255, 107, 53, 0.3); }
-.how-card:nth-child(3) { border-top-color: rgba(155, 48, 255, 0.3); }
+.how-card:nth-child(3) { border-top-color: var(--purple-glow); }
 .how-card:nth-child(2):hover { border-color: var(--orange); box-shadow: 0 4px 24px rgba(255, 107, 53, 0.1); }
-.how-card:nth-child(3):hover { border-color: #9B30FF; box-shadow: 0 4px 24px rgba(155, 48, 255, 0.1); }
+.how-card:nth-child(3):hover { border-color: var(--purple); box-shadow: 0 4px 24px var(--purple-glow); }
 
 .how-card p {
   font-family: var(--font-body);
   font-weight: 300;
   font-size: 15px;
   line-height: 1.7;
-  color: #b0b0b0;
+  color: var(--text-tertiary);
 }
 
 @media (max-width: 768px) {
@@ -561,7 +570,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-body);
   font-weight: 300;
   font-size: 15px;
-  color: #b0b0b0;
+  color: var(--text-tertiary);
   line-height: 1.6;
 }
 
@@ -871,7 +880,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-body);
   font-weight: 300;
   font-size: 13px;
-  color: #949494;
+  color: var(--text-muted);
 }
 
 /* ============================================================
@@ -953,7 +962,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-body);
   font-weight: 300;
   font-size: 14px;
-  color: #b0b0b0;
+  color: var(--text-tertiary);
   line-height: 1.7;
 }
 
@@ -1025,7 +1034,7 @@ img { max-width: 100%; display: block; }
 
 .product-image {
   background: linear-gradient(180deg, #252525 0%, #1e1e1e 50%, #252525 100%);
-  border: 1px solid #3a3a3a;
+  border: 1px solid var(--border-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1062,7 +1071,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-body);
   font-weight: 300;
   font-size: 16px;
-  color: #cccccc;
+  color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: 32px;
 }
@@ -1169,7 +1178,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-body);
   font-weight: 300;
   font-size: 14px;
-  color: #b0b0b0;
+  color: var(--text-tertiary);
   line-height: 1.7;
 }
 
@@ -1226,7 +1235,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-body);
   font-weight: 300;
   font-size: 16px;
-  color: #cccccc;
+  color: var(--text-secondary);
   line-height: 1.8;
   margin-bottom: 16px;
 }
@@ -1413,12 +1422,13 @@ img { max-width: 100%; display: block; }
      ============================================================ -->
 <nav class="nav" role="navigation" aria-label="Main navigation">
   <div class="container">
-    <div class="nav-logo" onclick="showPage('home')" role="button" tabindex="0" aria-label="HYPE-C Home">HYPE<span>-C</span></div>
+    <div class="nav-logo" onclick="showPage('home')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showPage('home')}" role="button" tabindex="0" aria-label="HYPE-C Home">HYPE<span>-C</span></div>
     <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu" aria-expanded="false" id="navToggle">&#9776;</button>
     <ul class="nav-links" id="navLinks" role="tablist">
       <li role="presentation"><a href="#" onclick="showPage('home');return false" class="active" data-page="home" role="tab" aria-selected="true">Home</a></li>
       <li role="presentation"><a href="#" onclick="showPage('product');return false" data-page="product" role="tab" aria-selected="false">Shop</a></li>
       <li role="presentation"><a href="#" onclick="showPage('about');return false" data-page="about" role="tab" aria-selected="false">About</a></li>
+      <li class="nav-mobile-cta" role="presentation"><button class="btn-primary" onclick="showPage('product')" style="width:100%;margin-top:8px">SHOP NOW</button></li>
     </ul>
     <button class="nav-cta" onclick="showPage('product')">SHOP NOW</button>
   </div>
@@ -1607,21 +1617,21 @@ img { max-width: 100%; display: block; }
           <div class="price">$20</div>
           <div class="per-unit">16 fl oz</div>
           <div class="shipping">+ $5.99 shipping</div>
-          <button class="btn-primary" onclick="showPage('product')">ADD TO CART</button>
+          <button class="btn-primary" onclick="showPage('product')">SHOP NOW</button>
         </div>
         <div class="price-card featured reveal">
           <h3>2-Pack</h3>
           <div class="price">$39</div>
           <div class="per-unit">$19.50 per bottle</div>
           <div class="shipping">Free shipping</div>
-          <button class="btn-primary" onclick="showPage('product')">ADD TO CART</button>
+          <button class="btn-primary" onclick="showPage('product')">SHOP NOW</button>
         </div>
         <div class="price-card reveal">
           <h3>3-Pack</h3>
           <div class="price">$54</div>
           <div class="per-unit">$18.00 per bottle</div>
           <div class="shipping">Free shipping</div>
-          <button class="btn-primary" onclick="showPage('product')">ADD TO CART</button>
+          <button class="btn-primary" onclick="showPage('product')">SHOP NOW</button>
         </div>
       </div>
     </div>
@@ -1800,7 +1810,7 @@ img { max-width: 100%; display: block; }
           <p class="description">16 fl oz trigger spray bottle. Works on counters, highchairs, gym bags, doorknobs, toys, and any hard surface. Spray on, wipe or let dry. No rinsing, no residue, no gloves. Three ingredients: water, salt, and hypochlorous acid.</p>
 
           <div class="variant-selector" role="radiogroup" aria-label="Select quantity">
-            <div class="variant-option selected" onclick="selectVariant(this)" role="radio" aria-checked="true" tabindex="0">
+            <div class="variant-option selected" onclick="selectVariant(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectVariant(this)}" role="radio" aria-checked="true" tabindex="0">
               <div class="variant-info">
                 <h4>Single Bottle</h4>
                 <div class="variant-detail">16 fl oz</div>
@@ -1810,7 +1820,7 @@ img { max-width: 100%; display: block; }
                 <div class="shipping-note">+ $5.99 shipping</div>
               </div>
             </div>
-            <div class="variant-option" onclick="selectVariant(this)" role="radio" aria-checked="false" tabindex="0">
+            <div class="variant-option" onclick="selectVariant(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectVariant(this)}" role="radio" aria-checked="false" tabindex="0">
               <div class="variant-info">
                 <h4>2-Pack</h4>
                 <div class="variant-detail">2 &times; 16 fl oz &mdash; $19.50/bottle</div>
@@ -1820,7 +1830,7 @@ img { max-width: 100%; display: block; }
                 <div class="shipping-note">Free shipping</div>
               </div>
             </div>
-            <div class="variant-option" onclick="selectVariant(this)" role="radio" aria-checked="false" tabindex="0">
+            <div class="variant-option" onclick="selectVariant(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectVariant(this)}" role="radio" aria-checked="false" tabindex="0">
               <div class="variant-info">
                 <h4>3-Pack</h4>
                 <div class="variant-detail">3 &times; 16 fl oz &mdash; $18.00/bottle</div>
@@ -2095,7 +2105,7 @@ img { max-width: 100%; display: block; }
         <ul>
           <li><a href="#" onclick="showPage('about');return false">About Us</a></li>
           <li><a href="#" onclick="showPage('ca-disclosure');return false">Ingredients</a></li>
-          <li>hello@hype-c.com</li>
+          <li><a href="mailto:hello@hype-c.com">hello@hype-c.com</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -2103,7 +2113,7 @@ img { max-width: 100%; display: block; }
         <ul>
           <li><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a></li>
           <li><a href="#" target="_blank" rel="noopener noreferrer">TikTok</a></li>
-          <li>hello@hype-c.com</li>
+          <li><a href="mailto:hello@hype-c.com">hello@hype-c.com</a></li>
         </ul>
       </div>
     </div>
@@ -2118,111 +2128,157 @@ img { max-width: 100%; display: block; }
      JAVASCRIPT
      ============================================================ -->
 <script>
-// Page titles for dynamic updates
-const pageTitles = {
-  'home': 'HYPE-C | Game Day Clean',
-  'product': 'Shop | HYPE-C',
-  'about': 'About | HYPE-C',
-  'ca-disclosure': 'Ingredients | HYPE-C'
-};
+(function() {
+  'use strict';
 
-// Page navigation
-function showPage(page) {
-  // Scroll first, before any DOM changes
-  window.scrollTo(0, 0);
-  
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  var targetPage = document.getElementById('page-' + page);
-  targetPage.classList.add('active');
-  
-  // Update nav active state + ARIA
-  document.querySelectorAll('.nav-links a[role="tab"]').forEach(a => {
-    a.classList.remove('active');
-    a.setAttribute('aria-selected', 'false');
-    if (a.dataset.page === page) {
-      a.classList.add('active');
-      a.setAttribute('aria-selected', 'true');
-    }
-  });
-  
-  // Update page title
-  document.title = pageTitles[page] || pageTitles['home'];
-  
-  // Close mobile nav + update ARIA
-  var navLinks = document.getElementById('navLinks');
-  var navToggle = document.getElementById('navToggle');
-  navLinks.classList.remove('open');
-  if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
-  
-  // Reset all reveal elements on the new page
-  targetPage.querySelectorAll('.reveal').forEach(function(el) {
-    el.classList.remove('visible');
-  });
-  
-  // Force first few reveals visible immediately (above-fold content)
-  // This prevents blank screens if IntersectionObserver is slow on iOS
-  requestAnimationFrame(function() {
-    var reveals = targetPage.querySelectorAll('.reveal');
-    for (var i = 0; i < Math.min(reveals.length, 4); i++) {
-      reveals[i].classList.add('visible');
-    }
-    // Let IntersectionObserver handle the rest
-    setTimeout(observeElements, 50);
-  });
-}
+  const pageTitles = {
+    'home': 'HYPE-C | Game Day Clean',
+    'product': 'Shop | HYPE-C',
+    'about': 'About | HYPE-C',
+    'ca-disclosure': 'Ingredients | HYPE-C'
+  };
 
-// Mobile nav toggle with ARIA
-function toggleNav() {
-  var navLinks = document.getElementById('navLinks');
-  var navToggle = document.getElementById('navToggle');
-  var isOpen = navLinks.classList.toggle('open');
-  if (navToggle) navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-}
+  const validPages = new Set(Object.keys(pageTitles));
 
-// Variant selector
-function selectVariant(el) {
-  document.querySelectorAll('.variant-option').forEach(function(v) {
-    v.classList.remove('selected');
-    v.setAttribute('aria-checked', 'false');
-  });
-  el.classList.add('selected');
-  el.setAttribute('aria-checked', 'true');
-}
+  // Page navigation with fade transition and history support
+  function showPage(page, pushState) {
+    if (pushState === undefined) pushState = true;
 
-// Scroll reveal — single observer, properly managed
-var currentObserver = null;
+    // Validate page name
+    if (!validPages.has(page)) return;
+    const targetPage = document.getElementById('page-' + page);
+    if (!targetPage) return;
 
-function observeElements() {
-  if (currentObserver) currentObserver.disconnect();
-  
-  currentObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        currentObserver.unobserve(entry.target);
+    // Scroll first, before any DOM changes
+    window.scrollTo(0, 0);
+
+    // Remove active from all pages
+    document.querySelectorAll('.page').forEach(function(p) {
+      p.classList.remove('active', 'fade-in');
+    });
+
+    // Show new page with fade-in
+    targetPage.classList.add('active');
+    requestAnimationFrame(function() {
+      targetPage.classList.add('fade-in');
+    });
+
+    // Update nav active state + ARIA
+    document.querySelectorAll('.nav-links a[role="tab"]').forEach(function(a) {
+      a.classList.remove('active');
+      a.setAttribute('aria-selected', 'false');
+      if (a.dataset.page === page) {
+        a.classList.add('active');
+        a.setAttribute('aria-selected', 'true');
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  // Only observe elements on the currently active page
-  var activePage = document.querySelector('.page.active');
-  if (activePage) {
-    activePage.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
-      currentObserver.observe(el);
+    // Update page title
+    document.title = pageTitles[page] || pageTitles['home'];
+
+    // Push to browser history (skip on popstate / initial load)
+    if (pushState) {
+      const url = page === 'home' ? '/' : '/#' + page;
+      history.pushState({ page: page }, '', url);
+    }
+
+    // Close mobile nav + update ARIA
+    const navLinks = document.getElementById('navLinks');
+    const navToggle = document.getElementById('navToggle');
+    navLinks.classList.remove('open');
+    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+
+    // Reset all reveal elements on the new page
+    targetPage.querySelectorAll('.reveal').forEach(function(el) {
+      el.classList.remove('visible');
+    });
+
+    // Force first few reveals visible immediately (above-fold content)
+    requestAnimationFrame(function() {
+      const reveals = targetPage.querySelectorAll('.reveal');
+      for (let i = 0; i < Math.min(reveals.length, 4); i++) {
+        reveals[i].classList.add('visible');
+      }
+      setTimeout(observeElements, 50);
     });
   }
-}
 
-document.addEventListener('DOMContentLoaded', function() {
-  observeElements();
-  
-  // Failsafe: force all reveals visible after 2s if observer hasn't fired
-  setTimeout(function() {
-    document.querySelectorAll('.page.active .reveal:not(.visible)').forEach(function(el) {
-      el.classList.add('visible');
+  // Handle browser back/forward
+  window.addEventListener('popstate', function(e) {
+    const page = (e.state && e.state.page) ? e.state.page : 'home';
+    showPage(page, false);
+  });
+
+  // Mobile nav toggle with ARIA
+  function toggleNav() {
+    const navLinks = document.getElementById('navLinks');
+    const navToggle = document.getElementById('navToggle');
+    const isOpen = navLinks.classList.toggle('open');
+    if (navToggle) navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+
+  // Variant selector
+  function selectVariant(el) {
+    document.querySelectorAll('.variant-option').forEach(function(v) {
+      v.classList.remove('selected');
+      v.setAttribute('aria-checked', 'false');
     });
-  }, 2000);
-});
+    el.classList.add('selected');
+    el.setAttribute('aria-checked', 'true');
+  }
+
+  // Scroll reveal — single observer, properly managed
+  let currentObserver = null;
+
+  function observeElements() {
+    if (currentObserver) currentObserver.disconnect();
+
+    currentObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          currentObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    const activePage = document.querySelector('.page.active');
+    if (activePage) {
+      activePage.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+        currentObserver.observe(el);
+      });
+    }
+  }
+
+  // Route from hash on page load
+  function getPageFromHash() {
+    const hash = window.location.hash.replace('#', '');
+    return validPages.has(hash) ? hash : 'home';
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const initialPage = getPageFromHash();
+    if (initialPage !== 'home') {
+      showPage(initialPage, false);
+    } else {
+      // Set initial history state for home
+      history.replaceState({ page: 'home' }, '', '/');
+    }
+    observeElements();
+
+    // Failsafe: force all reveals visible after 2s if observer hasn't fired
+    setTimeout(function() {
+      document.querySelectorAll('.page.active .reveal:not(.visible)').forEach(function(el) {
+        el.classList.add('visible');
+      });
+    }, 2000);
+  });
+
+  // Expose to global scope for inline onclick handlers
+  window.showPage = showPage;
+  window.toggleNav = toggleNav;
+  window.selectVariant = selectVariant;
+})();
 </script>
 
 </body>
