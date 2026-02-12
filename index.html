@@ -1615,21 +1615,21 @@ img { max-width: 100%; display: block; }
           <div class="price">$20</div>
           <div class="per-unit">16 fl oz</div>
           <div class="shipping">+ $5.99 shipping</div>
-          <button class="btn-primary" onclick="showPage('product')">SHOP NOW</button>
+          <button class="btn-primary" onclick="showPage('product',true,0)">SHOP NOW</button>
         </div>
         <div class="price-card featured reveal">
           <h3>2-Pack</h3>
           <div class="price">$39</div>
           <div class="per-unit">$19.50 per bottle</div>
           <div class="shipping">Free shipping</div>
-          <button class="btn-primary" onclick="showPage('product')">SHOP NOW</button>
+          <button class="btn-primary" onclick="showPage('product',true,1)">SHOP NOW</button>
         </div>
         <div class="price-card reveal">
           <h3>3-Pack</h3>
           <div class="price">$54</div>
           <div class="per-unit">$18.00 per bottle</div>
           <div class="shipping">Free shipping</div>
-          <button class="btn-primary" onclick="showPage('product')">SHOP NOW</button>
+          <button class="btn-primary" onclick="showPage('product',true,2)">SHOP NOW</button>
         </div>
       </div>
     </div>
@@ -2093,9 +2093,9 @@ img { max-width: 100%; display: block; }
       <div class="footer-col">
         <h4>Shop</h4>
         <ul>
-          <li><a href="#" onclick="showPage('product');return false">Single Bottle</a></li>
-          <li><a href="#" onclick="showPage('product');return false">2-Pack</a></li>
-          <li><a href="#" onclick="showPage('product');return false">3-Pack</a></li>
+          <li><a href="#" onclick="showPage('product',true,0);return false">Single Bottle</a></li>
+          <li><a href="#" onclick="showPage('product',true,1);return false">2-Pack</a></li>
+          <li><a href="#" onclick="showPage('product',true,2);return false">3-Pack</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -2139,7 +2139,7 @@ img { max-width: 100%; display: block; }
   const validPages = new Set(Object.keys(pageTitles));
 
   // Page navigation with fade transition and history support
-  function showPage(page, pushState) {
+  function showPage(page, pushState, variant) {
     if (pushState === undefined) pushState = true;
 
     // Validate page name
@@ -2147,16 +2147,24 @@ img { max-width: 100%; display: block; }
     const targetPage = document.getElementById('page-' + page);
     if (!targetPage) return;
 
-    // Scroll first, before any DOM changes (instant to bypass CSS smooth-scroll)
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    // Pre-select variant on product page (0=Single, 1=2-Pack, 2=3-Pack)
+    if (page === 'product' && variant !== undefined) {
+      var variants = targetPage.querySelectorAll('.variant-option');
+      if (variants[variant]) selectVariant(variants[variant]);
+    }
 
     // Remove active from all pages
     document.querySelectorAll('.page').forEach(function(p) {
       p.classList.remove('active', 'fade-in');
     });
 
-    // Show new page with fade-in (force reflow between display and opacity)
+    // Show new page (display:block at opacity:0)
     targetPage.classList.add('active');
+
+    // Scroll while target is laid out but still invisible (bypasses CSS smooth-scroll)
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+    // Now fade in (force reflow between display and opacity)
     targetPage.offsetHeight; // force reflow so transition can fire
     targetPage.classList.add('fade-in');
 
