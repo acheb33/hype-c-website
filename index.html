@@ -2147,8 +2147,8 @@ img { max-width: 100%; display: block; }
     const targetPage = document.getElementById('page-' + page);
     if (!targetPage) return;
 
-    // Scroll first, before any DOM changes
-    window.scrollTo(0, 0);
+    // Scroll first, before any DOM changes (instant to bypass CSS smooth-scroll)
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
     // Remove active from all pages
     document.querySelectorAll('.page').forEach(function(p) {
