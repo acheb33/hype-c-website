@@ -143,7 +143,7 @@
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; background-color: var(--black); color-scheme: dark; }
+html { scroll-behavior: smooth; background-color: var(--black); }
 
 body {
   font-family: var(--font-body);
@@ -361,7 +361,7 @@ img { max-width: 100%; display: block; }
   padding: 16px 40px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
 }
 
 .btn-primary:hover { background: var(--orange); color: var(--white); transform: translateY(-2px); }
@@ -377,7 +377,7 @@ img { max-width: 100%; display: block; }
   padding: 16px 40px;
   border: 1px solid var(--mid-gray);
   cursor: pointer;
-  transition: all 0.3s;
+  transition: border-color 0.3s, color 0.3s;
 }
 
 .btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
@@ -398,47 +398,6 @@ img { max-width: 100%; display: block; }
   .footer-col ul { gap: 2px; }
   .footer-col h4 { margin-bottom: 8px; }
 }
-
-/* ============================================================
-   TRUST BAR
-   ============================================================ */
-.trust-bar {
-  border-top: 1px solid rgba(0, 210, 211, 0.12);
-  border-bottom: 1px solid rgba(0, 210, 211, 0.12);
-  padding: 20px 0;
-  background: linear-gradient(90deg, var(--off-black) 0%, rgba(0, 210, 211, 0.03) 50%, var(--off-black) 100%);
-}
-
-.trust-bar .container {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.trust-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-body-cond);
-  font-weight: 500;
-  font-size: 13px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--light-gray);
-}
-
-.trust-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--teal);
-  box-shadow: 0 0 6px rgba(0, 210, 211, 0.4);
-}
-.trust-item:nth-child(2) .trust-dot,
-.trust-item:nth-child(4) .trust-dot { background: var(--orange); box-shadow: 0 0 6px rgba(255, 107, 53, 0.4); }
-.trust-item:nth-child(3) .trust-dot,
-.trust-item:nth-child(6) .trust-dot { background: var(--purple); box-shadow: 0 0 6px rgba(155, 48, 255, 0.4); }
 
 /* ============================================================
    HOW IT WORKS SECTION
@@ -485,7 +444,7 @@ img { max-width: 100%; display: block; }
   border-top: 2px solid rgba(0, 210, 211, 0.3);
   padding: 40px 32px;
   position: relative;
-  transition: all 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .how-card:hover { border-color: var(--teal); box-shadow: 0 6px 24px rgba(0, 210, 211, 0.1); }
@@ -647,7 +606,6 @@ img { max-width: 100%; display: block; }
   .footer-grid { grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
   .footer-brand { grid-column: 1 / -1; margin-bottom: 8px; }
   .footer-brand p { max-width: 100%; }
-  .trust-bar .container { gap: 16px; }
 }
 
 /* ============================================================
@@ -672,7 +630,7 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--mid-gray);
   padding: 40px 28px;
   text-align: center;
-  transition: all 0.3s;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
   position: relative;
 }
 
@@ -721,6 +679,16 @@ img { max-width: 100%; display: block; }
   font-size: 14px;
   color: var(--light-gray);
   margin-bottom: 16px;
+}
+
+.price-card .savings {
+  font-family: var(--font-body-cond);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 4px;
 }
 
 .price-card .shipping {
@@ -931,7 +899,7 @@ img { max-width: 100%; display: block; }
   background-color: var(--dark-gray);
   border: 1px solid var(--mid-gray);
   padding: 40px 32px;
-  transition: all 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .founder-card:hover { border-color: var(--purple); box-shadow: 0 6px 24px rgba(155, 48, 255, 0.08); }
@@ -1104,7 +1072,7 @@ img { max-width: 100%; display: block; }
   border: 2px solid var(--mid-gray);
   padding: 20px 24px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: border-color 0.2s, background 0.2s;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1304,7 +1272,7 @@ img { max-width: 100%; display: block; }
    MODIFIER CLASSES (migrated from inline styles)
    ============================================================ */
 .founder-grid--primary { margin-top: 60px; }
-.founder-grid--secondary { margin-top: 24px; }
+.founder-grid--secondary { margin-top: 24px; grid-template-columns: 1fr; max-width: 600px; }
 .founder-card--physician { padding: 48px 40px; }
 .founder-layout { display: flex; gap: 24px; align-items: flex-start; }
 .founder-avatar--large { width: 80px; height: 80px; min-width: 80px; font-size: 26px; }
@@ -1384,9 +1352,6 @@ img { max-width: 100%; display: block; }
   .hero-ctas { flex-direction: column; }
   .hero-waves { height: 20%; }
   .cta-waves { height: 20%; }
-  .trust-bar .container { gap: 8px; justify-content: center; flex-wrap: wrap; }
-  .trust-item { font-size: 10px; letter-spacing: 1px; gap: 5px; }
-  .trust-item:nth-child(n+5) { display: none; }
   .how-grid { grid-template-columns: 1fr; gap: 16px; }
   .how-card { padding: 24px 20px; }
   .how-number { font-size: 36px; }
@@ -1434,7 +1399,6 @@ img { max-width: 100%; display: block; }
   .btn-primary, .btn-secondary { font-size: 15px; padding: 14px 20px; }
   .price-card .price { font-size: 40px; }
   .price-card h3 { font-size: 20px; }
-  .trust-item { font-size: 10px; }
   .nav-logo { font-size: 22px; }
   .footer-grid { grid-template-columns: 1fr; gap: 12px; }
   .cta-banner { padding: 28px 0; }
@@ -1468,7 +1432,7 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      NAVIGATION
      ============================================================ -->
-<nav class="nav" role="navigation" aria-label="Main navigation">
+<nav class="nav" aria-label="Main navigation">
   <div class="container">
     <a href="/" class="nav-logo" onclick="showPage('home');return false" aria-label="HYPE-C Home">HYPE<span>-C</span></a>
     <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu" aria-expanded="false" id="navToggle">&#9776;</button>
@@ -1568,7 +1532,7 @@ img { max-width: 100%; display: block; }
         <div class="how-card reveal">
           <div class="how-number">02</div>
           <h3>We Make It the Same Way</h3>
-          <p>Salt + water + electricity. That's our entire process. Simple enough to explain to your kids, safe enough to use around them.</p>
+          <p>Salt and water go in, HOCl comes out. That's our entire process. Simple enough to explain to your kids, safe enough to use around them.</p>
         </div>
         <div class="how-card reveal">
           <div class="how-number">03</div>
@@ -1634,7 +1598,6 @@ img { max-width: 100%; display: block; }
                 <div class="name">Hypochlorous Acid</div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -1659,6 +1622,7 @@ img { max-width: 100%; display: block; }
           <h3>2-Pack</h3>
           <div class="price">$39</div>
           <div class="per-unit">$19.50 per bottle</div>
+          <div class="savings">Save $1.00</div>
           <div class="shipping">Free shipping</div>
           <button class="btn-primary" onclick="showPage('product',true,1)">SHOP NOW</button>
         </div>
@@ -1666,6 +1630,7 @@ img { max-width: 100%; display: block; }
           <h3>3-Pack</h3>
           <div class="price">$54</div>
           <div class="per-unit">$18.00 per bottle</div>
+          <div class="savings">Save $6.00</div>
           <div class="shipping">Free shipping</div>
           <button class="btn-primary" onclick="showPage('product',true,2)">SHOP NOW</button>
         </div>
@@ -1673,6 +1638,21 @@ img { max-width: 100%; display: block; }
     </div>
   </section>
 
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="cta-waves">
+      <svg viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M0,250 C200,180 400,300 600,220 C800,140 1000,280 1200,200 C1350,150 1420,240 1440,190 L1440,400 L0,400 Z" fill="url(#ctaWaveShared3)" />
+        <path d="M0,290 C180,240 360,320 560,260 C760,200 940,310 1140,250 C1300,200 1400,280 1440,240 L1440,400 L0,400 Z" fill="url(#ctaWaveShared2)" />
+        <path d="M0,330 C220,290 420,360 620,310 C820,260 1020,350 1220,300 C1380,260 1430,320 1440,290 L1440,400 L0,400 Z" fill="url(#ctaWaveShared1)" />
+      </svg>
+    </div>
+    <div class="container">
+      <h2 class="reveal">Three Ingredients. Zero Compromises.</h2>
+      <div class="tagline reveal">GAME DAY CLEAN. EVERY DAY.</div>
+      <button class="btn-primary reveal" onclick="showPage('product')">SHOP NOW</button>
+    </div>
+  </section>
 
 </div>
 
@@ -1903,7 +1883,6 @@ img { max-width: 100%; display: block; }
               <h3 class="founder-name--large">Dr. Kathy Nguyen</h3>
               <div class="role">Co-Founder &middot; Sports Medicine Physician</div>
               <p>A mom of three, Dr. Nguyen is board-certified in family medicine and sports medicine. She's spent years on both sides: maintaining the hygiene standards trusted in professional training rooms and keeping her own house full of kids healthy. That dual perspective shapes everything about Hype-C.</p>
-              
             </div>
           </div>
         </div>
@@ -1914,14 +1893,13 @@ img { max-width: 100%; display: block; }
               <h3 class="founder-name--large">Dr. Tina Pham</h3>
               <div class="role">Co-Founder &middot; Pediatric Cardiologist</div>
               <p>A mom of three and board-certified pediatric cardiologist. Dr. Pham knows what safe means, both clinically and at home. She ensures every Hype-C product meets the standard she'd want for her own kids.</p>
-              
             </div>
           </div>
         </div>
       </div>
 
       <!-- Operations founders - single combined card -->
-      <div class="founder-grid founder-grid--secondary" style="grid-template-columns: 1fr; max-width: 600px;">
+      <div class="founder-grid founder-grid--secondary">
         <div class="founder-card reveal">
           <h3>Alex Chebaro &amp; Tu Duong</h3>
           <div class="role">Co-Founders &middot; Operations, Product &amp; Design</div>
@@ -2048,7 +2026,7 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      FOOTER (Global)
      ============================================================ -->
-<footer class="footer" role="contentinfo">
+<footer class="footer">
   <div class="footer-waves">
     <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <defs>
@@ -2262,6 +2240,17 @@ img { max-width: 100%; display: block; }
     const hash = window.location.hash.replace('#', '');
     return validPages.has(hash) ? hash : 'home';
   }
+
+  // Close mobile nav when tapping outside
+  document.addEventListener('click', function(e) {
+    var navLinks = document.getElementById('navLinks');
+    var navToggle = document.getElementById('navToggle');
+    if (!navLinks.classList.contains('open')) return;
+    if (e.target.closest('.nav-links') || e.target.closest('.nav-toggle')) return;
+    navLinks.classList.remove('open');
+    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  });
 
   document.addEventListener('DOMContentLoaded', function() {
     const initialPage = getPageFromHash();
