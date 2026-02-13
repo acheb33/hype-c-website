@@ -918,6 +918,20 @@ img { max-width: 100%; display: block; }
   color: var(--purple);
   margin-bottom: 16px;
   box-shadow: 0 0 16px rgba(155, 48, 255, 0.12);
+  overflow: hidden;
+}
+.founder-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.founder-avatars-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.founder-avatars-row .founder-avatar {
+  margin-bottom: 0;
 }
 
 .founder-card h3 {
@@ -1883,7 +1897,7 @@ img { max-width: 100%; display: block; }
       <div class="founder-grid founder-grid--primary">
         <div class="founder-card founder-card--physician reveal">
           <div class="founder-layout">
-            <div class="founder-avatar founder-avatar--large">KN</div>
+            <div class="founder-avatar founder-avatar--large"><img src="Kathy Nguyen.jpg" alt="Dr. Kathy Nguyen"></div>
             <div>
               <h3 class="founder-name--large">Dr. Kathy Nguyen</h3>
               <div class="role">Co-Founder &middot; Sports Medicine Physician</div>
@@ -1893,7 +1907,7 @@ img { max-width: 100%; display: block; }
         </div>
         <div class="founder-card founder-card--physician reveal">
           <div class="founder-layout">
-            <div class="founder-avatar founder-avatar--large">TP</div>
+            <div class="founder-avatar founder-avatar--large"><img src="Tina Pham.webp" alt="Dr. Tina Pham"></div>
             <div>
               <h3 class="founder-name--large">Dr. Tina Pham</h3>
               <div class="role">Co-Founder &middot; Pediatric Cardiologist</div>
@@ -1906,6 +1920,10 @@ img { max-width: 100%; display: block; }
       <!-- Operations founders - single combined card -->
       <div class="founder-grid founder-grid--secondary">
         <div class="founder-card reveal">
+          <div class="founder-avatars-row">
+            <div class="founder-avatar"><img src="Alex Chebaro.jpg" alt="Alex Chebaro"></div>
+            <div class="founder-avatar"><img src="Tu Duong.jpeg" alt="Tu Duong"></div>
+          </div>
           <h3>Alex Chebaro &amp; Tu Duong</h3>
           <div class="role">Co-Founders &middot; Operations, Product &amp; Design</div>
           <p>Alex and Tu handle everything from supply chain and growth strategy to product development and packaging. They make sure every bottle meets the team's standards and reaches every household.</p>
