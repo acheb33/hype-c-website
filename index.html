@@ -306,7 +306,7 @@ img { max-width: 100%; display: block; }
 .hero-tagline {
   font-family: var(--font-tagline);
   font-size: clamp(24px, 3vw, 36px);
-  color: var(--teal);
+  color: var(--orange);
   letter-spacing: 4px;
   margin-bottom: 24px;
   opacity: 0;
@@ -385,6 +385,8 @@ img { max-width: 100%; display: block; }
   .hero-content { max-width: 100%; }
   .hero-body { max-width: 100%; }
   .hero-ctas { justify-content: center; }
+  .hero-waves { height: 25%; }
+  .cta-waves { height: 30%; }
   .btn-primary, .btn-secondary { width: 100%; text-align: center; }
   .section { padding: 60px 0; }
   .cta-banner { padding: 60px 0; }
@@ -431,6 +433,10 @@ img { max-width: 100%; display: block; }
   background: var(--teal);
   box-shadow: 0 0 6px rgba(0, 210, 211, 0.4);
 }
+.trust-item:nth-child(2) .trust-dot,
+.trust-item:nth-child(4) .trust-dot { background: var(--orange); box-shadow: 0 0 6px rgba(255, 107, 53, 0.4); }
+.trust-item:nth-child(3) .trust-dot,
+.trust-item:nth-child(6) .trust-dot { background: var(--purple); box-shadow: 0 0 6px rgba(155, 48, 255, 0.4); }
 
 /* ============================================================
    HOW IT WORKS SECTION
@@ -480,7 +486,7 @@ img { max-width: 100%; display: block; }
   transition: all 0.3s;
 }
 
-.how-card:hover { border-color: var(--teal); box-shadow: 0 4px 24px rgba(0, 210, 211, 0.1); }
+.how-card:hover { border-color: var(--teal); box-shadow: 0 6px 24px rgba(0, 210, 211, 0.1); }
 
 .how-number {
   font-family: var(--font-tagline);
@@ -503,8 +509,10 @@ img { max-width: 100%; display: block; }
 
 .how-card:nth-child(2) { border-top-color: rgba(255, 107, 53, 0.3); }
 .how-card:nth-child(3) { border-top-color: var(--purple-glow); }
-.how-card:nth-child(2):hover { border-color: var(--orange); box-shadow: 0 4px 24px rgba(255, 107, 53, 0.1); }
-.how-card:nth-child(3):hover { border-color: var(--purple); box-shadow: 0 4px 24px var(--purple-glow); }
+.how-card:nth-child(2) .how-number { color: var(--orange); text-shadow: 0 0 20px rgba(255, 107, 53, 0.3); }
+.how-card:nth-child(3) .how-number { color: var(--purple); text-shadow: 0 0 20px rgba(155, 48, 255, 0.3); }
+.how-card:nth-child(2):hover { border-color: var(--orange); box-shadow: 0 6px 24px rgba(255, 107, 53, 0.1); }
+.how-card:nth-child(3):hover { border-color: var(--purple); box-shadow: 0 6px 24px var(--purple-glow); }
 
 .how-card p {
   font-family: var(--font-body);
@@ -523,9 +531,11 @@ img { max-width: 100%; display: block; }
    ============================================================ */
 .why-section {
   background-color: var(--off-black);
-  border-top: 1px solid rgba(0, 210, 211, 0.15);
-  border-bottom: 1px solid rgba(0, 210, 211, 0.15);
+  border-top: 1px solid rgba(255, 107, 53, 0.15);
+  border-bottom: 1px solid rgba(255, 107, 53, 0.15);
 }
+.section-eyebrow--orange { color: var(--orange); }
+.section-eyebrow--purple { color: var(--purple); }
 
 .why-grid {
   display: grid;
@@ -551,14 +561,14 @@ img { max-width: 100%; display: block; }
   width: 40px;
   height: 40px;
   min-width: 40px;
-  background: var(--teal-glow);
-  border: 1px solid rgba(0, 210, 211, 0.3);
+  background: var(--orange-glow);
+  border: 1px solid rgba(255, 107, 53, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  color: var(--teal);
-  box-shadow: 0 0 12px rgba(0, 210, 211, 0.1);
+  color: var(--orange);
+  box-shadow: 0 0 12px rgba(255, 107, 53, 0.1);
 }
 
 .why-list li h4 {
@@ -579,10 +589,9 @@ img { max-width: 100%; display: block; }
 
 .ingredient-highlight {
   background-color: var(--dark-gray);
-  border: 1px solid rgba(0, 210, 211, 0.2);
+  border: 1px solid rgba(155, 48, 255, 0.2);
   padding: 40px;
   text-align: center;
-  box-shadow: 0 0 30px rgba(0, 210, 211, 0.05);
 }
 
 .ingredient-highlight h3 {
@@ -590,7 +599,7 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   font-size: 24px;
   margin-bottom: 24px;
-  color: var(--teal);
+  color: var(--purple);
 }
 
 .ingredients-list {
@@ -610,7 +619,6 @@ img { max-width: 100%; display: block; }
   font-size: 28px;
   color: var(--white);
   letter-spacing: 2px;
-  text-shadow: 0 0 10px rgba(0, 210, 211, 0.4), 0 0 30px rgba(0, 210, 211, 0.15);
 }
 
 .ingredient-item .name {
@@ -666,13 +674,14 @@ img { max-width: 100%; display: block; }
   position: relative;
 }
 
-.price-card:hover { border-color: var(--teal); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 210, 211, 0.1); }
+.price-card:hover { border-color: var(--teal); transform: translateY(-4px); box-shadow: 0 6px 24px rgba(0, 210, 211, 0.1); }
 
 .price-card.featured {
-  border-color: var(--teal);
-  background: linear-gradient(180deg, var(--dark-gray) 0%, rgba(0, 210, 211, 0.06) 100%);
-  box-shadow: 0 0 20px rgba(0, 210, 211, 0.15), 0 0 40px rgba(0, 210, 211, 0.05);
+  border-color: var(--orange);
+  background: linear-gradient(180deg, var(--dark-gray) 0%, rgba(255, 107, 53, 0.06) 100%);
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.12), 0 0 40px rgba(255, 107, 53, 0.04);
 }
+.price-card.featured:hover { border-color: var(--orange); box-shadow: 0 6px 24px rgba(255, 107, 53, 0.15); }
 
 .price-card.featured::before {
   content: 'MOST POPULAR';
@@ -680,8 +689,8 @@ img { max-width: 100%; display: block; }
   top: 0;
   left: 0;
   right: 0;
-  background: var(--teal);
-  color: var(--black);
+  background: var(--orange);
+  color: var(--white);
   font-family: var(--font-body-cond);
   font-weight: 600;
   font-size: 11px;
@@ -732,8 +741,8 @@ img { max-width: 100%; display: block; }
    ============================================================ */
 .cta-banner {
   background-color: var(--off-black);
-  border-top: 1px solid rgba(0, 210, 211, 0.15);
-  border-bottom: 1px solid rgba(0, 210, 211, 0.15);
+  border-top: 1px solid rgba(155, 48, 255, 0.15);
+  border-bottom: 1px solid rgba(155, 48, 255, 0.15);
   padding: 80px 0;
   text-align: center;
   position: relative;
@@ -773,7 +782,7 @@ img { max-width: 100%; display: block; }
 .cta-banner .tagline {
   font-family: var(--font-tagline);
   font-size: 24px;
-  color: var(--teal);
+  color: var(--orange);
   letter-spacing: 4px;
   margin-bottom: 32px;
 }
@@ -783,7 +792,7 @@ img { max-width: 100%; display: block; }
    ============================================================ */
 .footer {
   background-color: var(--off-black);
-  border-top: 1px solid rgba(0, 210, 211, 0.1);
+  border-top: 1px solid rgba(155, 48, 255, 0.1);
   padding: 60px 0 40px;
   position: relative;
   overflow: hidden;
@@ -923,28 +932,28 @@ img { max-width: 100%; display: block; }
   transition: all 0.3s;
 }
 
-.founder-card:hover { border-color: var(--teal); box-shadow: 0 4px 24px rgba(0, 210, 211, 0.08); }
+.founder-card:hover { border-color: var(--purple); box-shadow: 0 6px 24px rgba(155, 48, 255, 0.08); }
 
 .founder-avatar {
   width: 64px;
   height: 64px;
-  background: var(--teal-glow);
-  border: 1px solid rgba(0, 210, 211, 0.3);
+  background: var(--purple-glow);
+  border: 1px solid rgba(155, 48, 255, 0.3);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-brand);
   font-size: 22px;
-  color: var(--teal);
+  color: var(--purple);
   margin-bottom: 16px;
-  box-shadow: 0 0 16px rgba(0, 210, 211, 0.12);
+  box-shadow: 0 0 16px rgba(155, 48, 255, 0.12);
 }
 
 .founder-card h3 {
   font-family: var(--font-brand);
   font-weight: 600;
-  font-size: 20px;
+  font-size: 22px;
   margin-bottom: 4px;
 }
 
@@ -954,7 +963,7 @@ img { max-width: 100%; display: block; }
   font-size: 13px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--orange);
   margin-bottom: 12px;
 }
 
@@ -968,8 +977,8 @@ img { max-width: 100%; display: block; }
 
 .mission-section {
   background-color: var(--off-black);
-  border-top: 1px solid rgba(0, 210, 211, 0.15);
-  border-bottom: 1px solid rgba(0, 210, 211, 0.15);
+  border-top: 1px solid rgba(155, 48, 255, 0.15);
+  border-bottom: 1px solid rgba(155, 48, 255, 0.15);
 }
 
 .mission-grid {
@@ -992,13 +1001,18 @@ img { max-width: 100%; display: block; }
   padding: 28px 20px;
   text-align: center;
 }
+.stat-box:nth-child(2) { border-top-color: rgba(255, 107, 53, 0.3); }
+.stat-box:nth-child(3) { border-top-color: rgba(155, 48, 255, 0.3); }
+.stat-box:nth-child(4) { border-top-color: rgba(255, 107, 53, 0.3); }
 
 .stat-box .number {
   font-family: var(--font-tagline);
   font-size: 36px;
   color: var(--teal);
-  text-shadow: 0 0 16px rgba(0, 210, 211, 0.3);
 }
+.stat-box:nth-child(2) .number { color: var(--orange); }
+.stat-box:nth-child(3) .number { color: var(--purple); }
+.stat-box:nth-child(4) .number { color: var(--orange); }
 
 .stat-box .label {
   font-family: var(--font-body-cond);
@@ -1063,7 +1077,7 @@ img { max-width: 100%; display: block; }
   font-size: 15px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--orange);
   margin-bottom: 24px;
 }
 
@@ -1351,7 +1365,7 @@ img { max-width: 100%; display: block; }
 
 /* Phone pricing override - must come after 1024px block */
 @media (max-width: 768px) {
-  .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
 }
 
 /* ============================================================
@@ -1359,36 +1373,42 @@ img { max-width: 100%; display: block; }
    ============================================================ */
 @media (max-width: 480px) {
   .container { padding: 0 16px; }
-  .section { padding: 48px 0; }
+  .section { padding: 40px 0; }
   .hero { min-height: auto; }
   .hero .container { padding-top: 40px; padding-bottom: 60px; }
   .hero-headline { font-size: 32px; }
   .hero-tagline { font-size: 20px; letter-spacing: 2px; }
   .hero-body { font-size: 16px; }
+  .hero-ctas { flex-direction: column; }
+  .hero-waves, .cta-waves { display: none; }
   .trust-bar .container { gap: 8px; justify-content: center; flex-wrap: wrap; }
   .trust-item { font-size: 10px; letter-spacing: 1px; gap: 5px; }
+  .trust-item:nth-child(n+5) { display: none; }
   .how-grid { grid-template-columns: 1fr; gap: 16px; }
-  .how-card { padding: 28px 20px; }
+  .how-card { padding: 24px 20px; }
+  .how-number { font-size: 36px; }
   .section-title { font-size: 28px; }
   .section-eyebrow { font-size: 11px; letter-spacing: 3px; }
-  .pricing-grid { gap: 12px; }
-  .price-card { padding: 28px 20px; }
+  .why-list { gap: 20px; }
+  .ingredient-highlight { display: none; }
+  .pricing-grid { gap: 12px; max-width: 100%; }
+  .price-card { padding: 24px 20px; }
   .cta-banner .tagline { font-size: 18px; letter-spacing: 2px; }
-  .cta-banner { padding: 40px 0; }
+  .cta-banner { padding: 32px 0; }
+  .about-hero { padding: 48px 0; }
   .ingredient-table th, .ingredient-table td { padding: 10px 8px; font-size: 13px; }
-  .footer-grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
   .footer-brand { margin-bottom: 4px; }
   .footer-col h4 { margin-bottom: 10px; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
-  .mission-grid .stat-grid { grid-template-columns: 1fr; }
+  .mission-grid .stat-grid { grid-template-columns: 1fr 1fr; }
   .stat-grid { gap: 12px; }
   .stat-box { padding: 20px 16px; }
   .product-hero { padding: 40px 0; }
   .product-details .description { font-size: 15px; }
   .bottle-svg { max-width: 240px; }
   .founder-card--physician .founder-layout { flex-direction: column; gap: 16px; }
-  .about-hero { padding: 60px 0; }
-  .founder-card { padding: 28px 20px; }
+  .founder-card { padding: 24px 20px; }
   .ingredient-item .formula { font-size: 22px; }
 }
 
@@ -1402,14 +1422,19 @@ img { max-width: 100%; display: block; }
 
 /* Ultra-small screens (iPhone SE, 375px) */
 @media (max-width: 375px) {
-  .hero-headline { font-size: 28px; }
+  .container { padding: 0 12px; }
+  .section { padding: 32px 0; }
+  .hero-headline { font-size: 30px; }
   .hero-tagline { font-size: 18px; letter-spacing: 1px; }
   .hero-body { font-size: 15px; }
-  .section-title { font-size: 24px; }
-  .btn-primary, .btn-secondary { font-size: 14px; padding: 14px 20px; }
-  .price-card .price { font-size: 36px; }
-  .trust-item { font-size: 9px; }
+  .section-title { font-size: 26px; }
+  .btn-primary, .btn-secondary { font-size: 15px; padding: 14px 20px; }
+  .price-card .price { font-size: 40px; }
+  .price-card h3 { font-size: 20px; }
+  .trust-item { font-size: 10px; }
   .nav-logo { font-size: 22px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .cta-banner { padding: 28px 0; }
 }
 </style>
 </head>
@@ -1568,7 +1593,7 @@ img { max-width: 100%; display: block; }
     <div class="container">
       <div class="why-grid">
         <div>
-          <div class="section-eyebrow reveal">Why Hype-C</div>
+          <div class="section-eyebrow section-eyebrow--orange reveal">Why Hype-C</div>
           <h2 class="section-title reveal">Nothing to Worry About. Everything You'd Want.</h2>
           <ul class="why-list">
             <li class="reveal">
@@ -1628,7 +1653,7 @@ img { max-width: 100%; display: block; }
   <!-- Pricing Preview -->
   <section class="section product-preview">
     <div class="container">
-      <div class="section-eyebrow reveal">Shop</div>
+      <div class="section-eyebrow section-eyebrow--purple reveal">Shop</div>
       <h2 class="section-title reveal">One Bottle for Everything.</h2>
       <p class="section-body section-body--centered reveal">Three ingredients. Physician-founded. From highchairs to home gyms.</p>
       <div class="pricing-grid">
@@ -1657,21 +1682,6 @@ img { max-width: 100%; display: block; }
     </div>
   </section>
 
-  <!-- CTA Banner -->
-  <section class="cta-banner">
-    <div class="cta-waves">
-      <svg viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M0,250 C200,180 400,300 600,220 C800,140 1000,280 1200,200 C1350,150 1420,240 1440,190 L1440,400 L0,400 Z" fill="url(#ctaWaveShared3)" />
-        <path d="M0,290 C180,240 360,320 560,260 C760,200 940,310 1140,250 C1300,200 1400,280 1440,240 L1440,400 L0,400 Z" fill="url(#ctaWaveShared2)" />
-        <path d="M0,330 C220,290 420,360 620,310 C820,260 1020,350 1220,300 C1380,260 1430,320 1440,290 L1440,400 L0,400 Z" fill="url(#ctaWaveShared1)" />
-      </svg>
-    </div>
-    <div class="container">
-      <h2 class="reveal">One Less Thing to Worry About.</h2>
-      <div class="tagline reveal">GAME DAY CLEAN</div>
-      <button class="btn-primary reveal" onclick="showPage('product')">SHOP NOW</button>
-    </div>
-  </section>
 
 </div>
 
@@ -1870,10 +1880,6 @@ img { max-width: 100%; display: block; }
               <h4>Storage</h4>
               <p>Store in a cool, dark place. Avoid direct sunlight. Best used within 6 months of manufacture date.</p>
             </div>
-            <div class="info-block">
-              <h4>Founded by Physicians</h4>
-              <p>Two of our co-founders are physicians, one in sports medicine and one in pediatric cardiology. HOCl has been a staple in training rooms and clinical settings for years. We started Hype-C to bring that standard home.</p>
-            </div>
           </div>
         </div>
       </div>
@@ -1929,13 +1935,13 @@ img { max-width: 100%; display: block; }
           <div class="founder-avatar">AC</div>
           <h3>Alex Chebaro</h3>
           <div class="role">Co-Founder &middot; Operations & Strategy</div>
-          <p>Brings deep experience in energy markets and quantitative analysis to Hype-C's operations, supply chain, and growth strategy. Focused on building the systems that bring physician-quality clean to every household.</p>
+          <p>Leads operations, supply chain, and growth strategy. Focused on building the systems that bring physician-quality clean to every household.</p>
         </div>
         <div class="founder-card reveal">
           <div class="founder-avatar">TD</div>
           <h3>Tu Duong</h3>
           <div class="role">Co-Founder &middot; Product & Design</div>
-          <p>Experienced in consumer products, M&amp;A integration, and brand development. Tu leads Hype-C's product development, packaging design, and production operations, ensuring every bottle meets the team's quality standards.</p>
+          <p>Leads product development, packaging design, and production operations. Ensures every bottle meets the team's quality standards.</p>
         </div>
       </div>
     </div>
