@@ -1291,6 +1291,11 @@ img { max-width: 100%; display: block; }
   outline-offset: 2px;
 }
 
+/* Suppress outline on programmatically focused headings */
+[tabindex="-1"]:focus {
+  outline: none;
+}
+
 /* Skip to content link */
 .skip-link {
   position: absolute;
@@ -2053,9 +2058,7 @@ img { max-width: 100%; display: block; }
       <div class="footer-col">
         <h4>Shop</h4>
         <ul>
-          <li><a href="#" onclick="showPage('product',true,0);return false">Single Bottle</a></li>
-          <li><a href="#" onclick="showPage('product',true,1);return false">2-Pack</a></li>
-          <li><a href="#" onclick="showPage('product',true,2);return false">3-Pack</a></li>
+          <li><a href="#" onclick="showPage('product');return false">Shop Now</a></li>
         </ul>
       </div>
       <div class="footer-col">
