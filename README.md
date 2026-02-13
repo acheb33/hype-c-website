@@ -1,64 +1,78 @@
 # HYPE-C Website Prototype
 
-Single-file HTML/CSS/JS prototype for the Hype-C e-commerce storefront. This is a **design reference and content source** for the Shopify migration — not production code.
+Single-file HTML/CSS/JS prototype for the **HYPE-C** e-commerce storefront — a physician-founded hypochlorous acid surface cleaner brand based in Houston, TX.
 
-## What's in here
+This is a **design reference and content source** for the upcoming Shopify migration, not production code.
 
-`index.html` — fully self-contained prototype with:
-- Home, Shop, About, and Ingredient Disclosure pages
-- SPA-style navigation (JS page switching, no routing)
-- Mobile-responsive breakpoints (375px, 480px, 768px, 1024px)
-- Product variant selector and pricing display
-- Scroll-reveal animations
-- SEO meta tags and JSON-LD structured data
-- WCAG 2.1 AA accessibility (skip links, ARIA, keyboard nav, focus management)
+**Live:** [hype-c.com](https://hype-c.com) | **Status:** Pre-launch (target March 28, 2026)
 
-## Brand specs
+## Architecture
 
-- **Colors:** Neon Teal `#00D2D3`, Orange `#FF6B35`, Black `#0A0A0A`
-- **Fonts:** Oswald Bold (headings), Bebas Neue (taglines), Barlow Condensed (body)
-- **Aesthetic:** 90s Jazz cup, matte black, sports energy
+Everything lives in `index.html` — HTML, CSS, and JavaScript in a single self-contained file. Pages are swapped via JavaScript (SPA-style, no routing framework).
 
-## How to preview
+| Page | Description |
+|------|-------------|
+| Home | Hero, how-it-works, ingredients, pricing, CTA |
+| Product | Bottle visual, variant selector, add-to-cart prototype |
+| About | Founder bios (2 physicians + combined ops card), mission, stats |
+| Ingredients | CA Cleaning Product Right to Know Act disclosure table |
 
-Open `index.html` directly in Chrome, Safari, or Firefox. For mobile testing, serve locally:
+## Brand system
+
+| Element | Value |
+|---------|-------|
+| Primary | Neon Teal `#00D2D3` |
+| Accent | Orange `#FF6B35` |
+| Background | Off-Black `#0A0A0A` |
+| Headings | Oswald 700 |
+| Taglines | Bebas Neue |
+| Body | Barlow / Barlow Condensed |
+| Voice | Direct, clean, confident. No jargon, no hype. |
+
+## Preview locally
+
+Open `index.html` directly in a browser, or serve it for mobile testing:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then visit `http://localhost:8000` on your phone (use your computer's local IP).
-
 > **Note:** Opening from iOS Files won't work — the sandboxed WebKit view blocks JavaScript.
 
 ## Deployment
 
-This site is deployed via **GitHub Pages** from the `main` branch root.
+Deployed via **GitHub Pages** from `main` branch root (`.github/workflows/pages.yml`).
 
-**Live URL:** https://hype-c.com (or `https://<your-username>.github.io/hype-c-website/` before custom domain setup)
+### Custom domain DNS
 
-### Custom domain setup
+| Type | Name | Value |
+|------|------|-------|
+| A | @ | `185.199.108.153` |
+| A | @ | `185.199.109.153` |
+| A | @ | `185.199.110.153` |
+| A | @ | `185.199.111.153` |
+| CNAME | www | `acheb33.github.io` |
 
-1. In your GitHub repo, go to **Settings > Pages**
-2. Set **Source** to "Deploy from a branch" → `main` / `/ (root)`
-3. Under **Custom domain**, enter `hype-c.com`
-4. In your domain registrar's DNS settings, add:
-   - `A` records pointing to GitHub Pages IPs:
-     - `185.199.108.153`
-     - `185.199.109.153`
-     - `185.199.110.153`
-     - `185.199.111.153`
-   - `CNAME` record: `www` → `<your-username>.github.io`
-5. Check **Enforce HTTPS** once DNS propagates
+Enforce HTTPS in **Settings > Pages** once DNS propagates.
 
 ## Shopify migration
 
-This prototype simulates multi-page navigation in a single file. The actual Shopify store will use Liquid templates, theme sections, and Shopify's cart/checkout. Use this repo as the source of truth for:
+This prototype simulates multi-page navigation in a single file. The Shopify store will use Liquid templates, theme sections, and native cart/checkout. Use this repo as source of truth for:
+
 - Copy and messaging
 - Section layout and ordering
-- Color/font/spacing values
-- Mobile breakpoint behavior
+- Color, font, and spacing values
+- Mobile breakpoint behavior (375px, 480px, 768px, 1024px)
 
-## Status
+## Founders
 
-Pre-launch. Target: March 28, 2026.
+| Name | Role |
+|------|------|
+| Dr. Kathy Nguyen | Co-Founder, Sports Medicine Physician |
+| Dr. Tina Pham | Co-Founder, Pediatric Cardiologist |
+| Alex Chebaro | Co-Founder, Operations & Strategy |
+| Tu Duong | Co-Founder, Product & Design |
+
+## Company
+
+Hype Everything LLC, Houston, TX | [hello@hype-c.com](mailto:hello@hype-c.com) | [@get.hypec](https://instagram.com/get.hypec)
