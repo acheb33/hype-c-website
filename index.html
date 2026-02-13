@@ -15,9 +15,13 @@
 <meta property="og:url" content="https://hype-c.com">
 <meta property="og:site_name" content="HYPE-C">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://hype-c.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="HYPE-C | Game Day Clean">
 <meta name="twitter:description" content="We're physicians who built a cleaner we'd trust around our own kids. Three ingredients. No harsh chemicals.">
+<meta name="twitter:image" content="https://hype-c.com/og-image.png">
 <link rel="canonical" href="https://hype-c.com/">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230A0A0A'/><text x='16' y='22' font-family='sans-serif' font-weight='bold' font-size='14' fill='%2300D2D3' text-anchor='middle'>HC</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -427,8 +431,6 @@ img { max-width: 100%; display: block; }
   background: var(--teal);
   box-shadow: 0 0 6px rgba(0, 210, 211, 0.4);
 }
-
-.trust-dot.teal { background: var(--teal); }
 
 /* ============================================================
    HOW IT WORKS SECTION
@@ -1295,6 +1297,7 @@ img { max-width: 100%; display: block; }
 .section-body--spaced { margin-top: 20px; }
 .section-body--centered { margin: 0 auto; }
 .legal-footer-note { margin-top: 48px; font-size: 13px; color: #949494; }
+.coming-soon { color: var(--light-gray); font-family: var(--font-body); font-weight: 300; font-size: 14px; }
 
 /* ============================================================
    ACCESSIBILITY
@@ -1339,7 +1342,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 1024px) {
   .how-grid { grid-template-columns: 1fr 1fr; }
   .why-grid { gap: 40px; }
-  .pricing-grid { grid-template-columns: 1fr 1fr; max-width: 600px; gap: 16px; }
+  .pricing-grid { gap: 16px; }
   .footer-grid { gap: 24px; }
   .product-layout { gap: 40px; }
   .mission-grid { gap: 40px; }
@@ -1412,6 +1415,25 @@ img { max-width: 100%; display: block; }
 </head>
 <body>
 
+<!-- Shared SVG gradient definitions (used by CTA wave sections) -->
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <linearGradient id="ctaWaveShared1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00FFD5" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#00D2D3" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="ctaWaveShared2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B35" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#FF6B35" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="ctaWaveShared3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9B30FF" stop-opacity="0.18"/>
+      <stop offset="50%" stop-color="#00D2D3" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#FF6B35" stop-opacity="0.18"/>
+    </linearGradient>
+  </defs>
+</svg>
+
 <!-- Skip to content (accessibility) -->
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
@@ -1420,13 +1442,13 @@ img { max-width: 100%; display: block; }
      ============================================================ -->
 <nav class="nav" role="navigation" aria-label="Main navigation">
   <div class="container">
-    <div class="nav-logo" onclick="showPage('home')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showPage('home')}" role="button" tabindex="0" aria-label="HYPE-C Home">HYPE<span>-C</span></div>
+    <a href="/" class="nav-logo" onclick="showPage('home');return false" aria-label="HYPE-C Home">HYPE<span>-C</span></a>
     <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu" aria-expanded="false" id="navToggle">&#9776;</button>
-    <ul class="nav-links" id="navLinks" role="tablist">
-      <li role="presentation"><a href="#" onclick="showPage('home');return false" id="tab-home" class="active" data-page="home" role="tab" aria-selected="true" aria-controls="page-home">Home</a></li>
-      <li role="presentation"><a href="#" onclick="showPage('product');return false" id="tab-product" data-page="product" role="tab" aria-selected="false" aria-controls="page-product">Shop</a></li>
-      <li role="presentation"><a href="#" onclick="showPage('about');return false" id="tab-about" data-page="about" role="tab" aria-selected="false" aria-controls="page-about">About</a></li>
-      <li class="nav-mobile-cta" role="presentation"><button class="btn-primary nav-mobile-cta-btn" onclick="showPage('product')">SHOP NOW</button></li>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/" onclick="showPage('home');return false" class="active" data-page="home" aria-current="page">Home</a></li>
+      <li><a href="/#product" onclick="showPage('product');return false" data-page="product">Shop</a></li>
+      <li><a href="/#about" onclick="showPage('about');return false" data-page="about">About</a></li>
+      <li class="nav-mobile-cta"><button class="btn-primary nav-mobile-cta-btn" onclick="showPage('product')">SHOP NOW</button></li>
     </ul>
     <button class="nav-cta" onclick="showPage('product')">SHOP NOW</button>
   </div>
@@ -1438,7 +1460,7 @@ img { max-width: 100%; display: block; }
 <noscript><style>.page{display:block!important}.reveal{opacity:1!important;transform:none!important}.hero-headline,.hero-tagline,.hero-body,.hero-ctas{opacity:1!important;transform:none!important}</style></noscript>
 
 <main id="main-content">
-<div id="page-home" class="page active fade-in" role="tabpanel" aria-labelledby="tab-home">
+<div id="page-home" class="page active fade-in">
 
   <!-- Hero -->
   <section class="hero">
@@ -1506,7 +1528,7 @@ img { max-width: 100%; display: block; }
   <!-- Trust Bar -->
   <div class="trust-bar">
     <div class="container">
-      <div class="trust-item"><div class="trust-dot teal"></div>Physician-Founded</div>
+      <div class="trust-item"><div class="trust-dot"></div>Physician-Founded</div>
       <div class="trust-item"><div class="trust-dot"></div>Non-Toxic</div>
       <div class="trust-item"><div class="trust-dot"></div>No Bleach</div>
       <div class="trust-item"><div class="trust-dot"></div>No Alcohol</div>
@@ -1639,24 +1661,9 @@ img { max-width: 100%; display: block; }
   <section class="cta-banner">
     <div class="cta-waves">
       <svg viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="ctaWave1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#00FFD5" stop-opacity="0.25"/>
-            <stop offset="100%" stop-color="#00D2D3" stop-opacity="0.08"/>
-          </linearGradient>
-          <linearGradient id="ctaWave2" x1="100%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#FF6B35" stop-opacity="0.2"/>
-            <stop offset="100%" stop-color="#FF6B35" stop-opacity="0.05"/>
-          </linearGradient>
-          <linearGradient id="ctaWave3" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#9B30FF" stop-opacity="0.18"/>
-            <stop offset="50%" stop-color="#00D2D3" stop-opacity="0.12"/>
-            <stop offset="100%" stop-color="#FF6B35" stop-opacity="0.18"/>
-          </linearGradient>
-        </defs>
-        <path d="M0,250 C200,180 400,300 600,220 C800,140 1000,280 1200,200 C1350,150 1420,240 1440,190 L1440,400 L0,400 Z" fill="url(#ctaWave3)" />
-        <path d="M0,290 C180,240 360,320 560,260 C760,200 940,310 1140,250 C1300,200 1400,280 1440,240 L1440,400 L0,400 Z" fill="url(#ctaWave2)" />
-        <path d="M0,330 C220,290 420,360 620,310 C820,260 1020,350 1220,300 C1380,260 1430,320 1440,290 L1440,400 L0,400 Z" fill="url(#ctaWave1)" />
+        <path d="M0,250 C200,180 400,300 600,220 C800,140 1000,280 1200,200 C1350,150 1420,240 1440,190 L1440,400 L0,400 Z" fill="url(#ctaWaveShared3)" />
+        <path d="M0,290 C180,240 360,320 560,260 C760,200 940,310 1140,250 C1300,200 1400,280 1440,240 L1440,400 L0,400 Z" fill="url(#ctaWaveShared2)" />
+        <path d="M0,330 C220,290 420,360 620,310 C820,260 1020,350 1220,300 C1380,260 1430,320 1440,290 L1440,400 L0,400 Z" fill="url(#ctaWaveShared1)" />
       </svg>
     </div>
     <div class="container">
@@ -1671,7 +1678,7 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      PAGE: PRODUCT
      ============================================================ -->
-<div id="page-product" class="page" role="tabpanel" aria-labelledby="tab-product">
+<div id="page-product" class="page">
   <section class="product-hero">
     <div class="container">
       <div class="product-layout">
@@ -1877,7 +1884,7 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      PAGE: ABOUT
      ============================================================ -->
-<div id="page-about" class="page" role="tabpanel" aria-labelledby="tab-about">
+<div id="page-about" class="page">
 
   <section class="about-hero">
     <div class="container">
@@ -1970,24 +1977,9 @@ img { max-width: 100%; display: block; }
   <section class="cta-banner">
     <div class="cta-waves">
       <svg viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="ctaWave1b" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#00FFD5" stop-opacity="0.25"/>
-            <stop offset="100%" stop-color="#00D2D3" stop-opacity="0.08"/>
-          </linearGradient>
-          <linearGradient id="ctaWave2b" x1="100%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#FF6B35" stop-opacity="0.2"/>
-            <stop offset="100%" stop-color="#FF6B35" stop-opacity="0.05"/>
-          </linearGradient>
-          <linearGradient id="ctaWave3b" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#9B30FF" stop-opacity="0.18"/>
-            <stop offset="50%" stop-color="#00D2D3" stop-opacity="0.12"/>
-            <stop offset="100%" stop-color="#FF6B35" stop-opacity="0.18"/>
-          </linearGradient>
-        </defs>
-        <path d="M0,250 C200,180 400,300 600,220 C800,140 1000,280 1200,200 C1350,150 1420,240 1440,190 L1440,400 L0,400 Z" fill="url(#ctaWave3b)" />
-        <path d="M0,290 C180,240 360,320 560,260 C760,200 940,310 1140,250 C1300,200 1400,280 1440,240 L1440,400 L0,400 Z" fill="url(#ctaWave2b)" />
-        <path d="M0,330 C220,290 420,360 620,310 C820,260 1020,350 1220,300 C1380,260 1430,320 1440,290 L1440,400 L0,400 Z" fill="url(#ctaWave1b)" />
+        <path d="M0,250 C200,180 400,300 600,220 C800,140 1000,280 1200,200 C1350,150 1420,240 1440,190 L1440,400 L0,400 Z" fill="url(#ctaWaveShared3)" />
+        <path d="M0,290 C180,240 360,320 560,260 C760,200 940,310 1140,250 C1300,200 1400,280 1440,240 L1440,400 L0,400 Z" fill="url(#ctaWaveShared2)" />
+        <path d="M0,330 C220,290 420,360 620,310 C820,260 1020,350 1220,300 C1380,260 1430,320 1440,290 L1440,400 L0,400 Z" fill="url(#ctaWaveShared1)" />
       </svg>
     </div>
     <div class="container">
@@ -2002,7 +1994,7 @@ img { max-width: 100%; display: block; }
 <!-- ============================================================
      PAGE: CA INGREDIENT DISCLOSURE
      ============================================================ -->
-<div id="page-ca-disclosure" class="page" role="tabpanel" aria-label="Ingredient Disclosure">
+<div id="page-ca-disclosure" class="page" aria-label="Ingredient Disclosure">
   <div class="container">
     <div class="legal-page">
       <h1>Ingredient Disclosure</h1>
@@ -2109,8 +2101,8 @@ img { max-width: 100%; display: block; }
       <div class="footer-col">
         <h4>Connect</h4>
         <ul>
-          <li><span style="color:var(--light-gray);font-family:var(--font-body);font-weight:300;font-size:14px">Instagram &mdash; Coming Soon</span></li>
-          <li><span style="color:var(--light-gray);font-family:var(--font-body);font-weight:300;font-size:14px">TikTok &mdash; Coming Soon</span></li>
+          <li><span class="coming-soon">Instagram &mdash; Coming Soon</span></li>
+          <li><span class="coming-soon">TikTok &mdash; Coming Soon</span></li>
           <li><a href="mailto:hello@hype-c.com">hello@hype-c.com</a></li>
         </ul>
       </div>
@@ -2149,7 +2141,7 @@ img { max-width: 100%; display: block; }
 
     // Pre-select variant on product page (0=Single, 1=2-Pack, 2=3-Pack)
     if (page === 'product' && variant !== undefined) {
-      var variants = targetPage.querySelectorAll('.variant-option');
+      const variants = targetPage.querySelectorAll('.variant-option');
       if (variants[variant]) selectVariant(variants[variant]);
     }
 
@@ -2169,14 +2161,14 @@ img { max-width: 100%; display: block; }
     targetPage.classList.add('fade-in');
 
     // Update nav active state + ARIA
-    document.querySelectorAll('.nav-links a[role="tab"]').forEach(function(a) {
+    document.querySelectorAll('.nav-links a[data-page]').forEach(function(a) {
       a.classList.remove('active');
-      a.setAttribute('aria-selected', 'false');
+      a.removeAttribute('aria-current');
       // CA Disclosure falls under About in the nav
       const navPage = page === 'ca-disclosure' ? 'about' : page;
       if (a.dataset.page === navPage) {
         a.classList.add('active');
-        a.setAttribute('aria-selected', 'true');
+        a.setAttribute('aria-current', 'page');
       }
     });
 
