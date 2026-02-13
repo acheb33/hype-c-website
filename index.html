@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#0A0A0A">
 <meta name="robots" content="index, follow">
 <title>HYPE-C | Game Day Clean</title>
-<meta name="description" content="Physician-founded surface cleaner made with three ingredients: salt, water, and electricity. No bleach, no alcohol, no harsh chemicals. Built for families in Houston, TX.">
+<meta name="description" content="Physician-founded surface cleaner made with three ingredients: water, salt, and hypochlorous acid. No bleach, no alcohol, no harsh chemicals. Built for families in Houston, TX.">
 <meta name="keywords" content="hypochlorous acid cleaner, HOCl surface cleaner, non-toxic cleaner, physician-founded cleaner, no bleach cleaner, fragrance free cleaner, biodegradable cleaner, HYPE-C">
 <meta property="og:title" content="HYPE-C | Game Day Clean">
 <meta property="og:description" content="We're physicians who built a cleaner we'd trust around our own kids. Three ingredients. No harsh chemicals.">
@@ -156,6 +156,7 @@ body {
 
 a { color: var(--teal); text-decoration: none; transition: color 0.2s; }
 a:hover { color: var(--orange); }
+a:active { color: var(--teal); }
 
 img { max-width: 100%; display: block; }
 
@@ -194,6 +195,7 @@ img { max-width: 100%; display: block; }
   cursor: pointer;
 }
 
+.nav-logo:hover, .nav-logo:active { color: var(--white); }
 .nav-logo span { color: var(--teal); }
 
 .nav-links {
@@ -1311,7 +1313,7 @@ img { max-width: 100%; display: block; }
 .section-body--spaced { margin-top: 20px; }
 .section-body--centered { margin: 0 auto; }
 .legal-footer-note { margin-top: 48px; font-size: 13px; color: #949494; }
-.coming-soon { color: var(--light-gray); font-family: var(--font-body); font-weight: 300; font-size: 14px; }
+.coming-soon { color: var(--text-muted); font-family: var(--font-body); font-weight: 300; font-size: 14px; cursor: default; }
 
 /* ============================================================
    ACCESSIBILITY
@@ -2176,6 +2178,7 @@ img { max-width: 100%; display: block; }
     const navToggle = document.getElementById('navToggle');
     navLinks.classList.remove('open');
     if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
 
     // Reset all reveal elements on the new page
     targetPage.querySelectorAll('.reveal').forEach(function(el) {
@@ -2211,6 +2214,7 @@ img { max-width: 100%; display: block; }
     const navToggle = document.getElementById('navToggle');
     const isOpen = navLinks.classList.toggle('open');
     if (navToggle) navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   }
 
   // Add to cart (prototype placeholder, Shopify will replace)
